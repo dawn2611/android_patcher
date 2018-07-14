@@ -1,0 +1,31 @@
+From 7aecfdf3af6625c80c00fba341ed8643c36d8fba Mon Sep 17 00:00:00 2001
+From: Ankit Jain <jankit@codeaurora.org>
+Date: Wed, 27 Dec 2017 06:08:40 +0530
+Subject: [PATCH 01/25] msm8953-common: config.fs: Add AID_RFS and
+ AID_RFS_SHARED to config.fs
+
+Change-Id: I23adbffbe22ff622d0a6fb82290380d86c29d0e4
+---
+ config.fs | 6 ++++++
+ 1 file changed, 6 insertions(+)
+
+diff --git a/config.fs b/config.fs
+index 3e594b8..370471c 100644
+--- a/config.fs
++++ b/config.fs
+@@ -1,6 +1,12 @@
+ [AID_QTI_DIAG]
+ value:2901
+ 
++[AID_RFS]
++value:2903
++
++[AID_RFS_SHARED]
++value:2904
++
+ [vendor/bin/wcnss_filter]
+ mode: 0755
+ user: AID_BLUETOOTH
+-- 
+2.7.4
+

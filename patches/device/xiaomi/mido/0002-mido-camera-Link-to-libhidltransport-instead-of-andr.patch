@@ -1,0 +1,27 @@
+From 60451eb69d7ebb1481f503fa1099fc8a5ed900b9 Mon Sep 17 00:00:00 2001
+From: Michael Bestas <mkbestas@lineageos.org>
+Date: Sat, 26 May 2018 21:13:26 +0300
+Subject: [PATCH 2/6] mido: camera: Link to libhidltransport instead of
+ android.hidl.base
+
+Change-Id: I7d5de847faf39413290719b2f2d2dc7c56e703da
+---
+ camera/QCamera2/Android.mk | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/camera/QCamera2/Android.mk b/camera/QCamera2/Android.mk
+index 45663cf..7031f61 100644
+--- a/camera/QCamera2/Android.mk
++++ b/camera/QCamera2/Android.mk
+@@ -127,7 +127,7 @@ LOCAL_SHARED_LIBRARIES := liblog libhardware libutils libcutils libdl libsync
+ LOCAL_SHARED_LIBRARIES += libmmcamera_interface libmmjpeg_interface libui libcamera_metadata
+ LOCAL_SHARED_LIBRARIES += libqdMetaData libqservice libbinder
+ ifeq ($(USE_DISPLAY_SERVICE),true)
+-LOCAL_SHARED_LIBRARIES += android.frameworks.displayservice@1.0 android.hidl.base@1.0 libhidlbase
++LOCAL_SHARED_LIBRARIES += android.frameworks.displayservice@1.0 libhidlbase libhidltransport
+ else
+ LOCAL_SHARED_LIBRARIES += libgui
+ endif
+-- 
+2.7.4
+

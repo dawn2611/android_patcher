@@ -1,0 +1,31 @@
+From fdb7513603a59534ffcd3163e949f471cd79ab23 Mon Sep 17 00:00:00 2001
+From: Michael Bestas <mkbestas@lineageos.org>
+Date: Fri, 13 Jul 2018 23:17:23 +0300
+Subject: [PATCH 25/25] msm8953-common: Set TARGET_PROVIDES_QTI_TELEPHONY_JAR
+
+* Avoids the following warnings on every single rebuild of anything:
+build/core/Makefile:34: warning: overriding commands for target
+ `/out/lineage-15.1/target/product/kuntao/system/framework/qti-telephony-common.jar'
+build/core/base_rules.mk:391: warning: ignoring old commands for target
+ `/out/lineage-15.1/target/product/kuntao/system/framework/qti-telephony-common.jar'
+
+Change-Id: Idffe1a95d5ddac0ef3d6c74e3d55293b553e51ba
+---
+ BoardConfigCommon.mk | 1 +
+ 1 file changed, 1 insertion(+)
+
+diff --git a/BoardConfigCommon.mk b/BoardConfigCommon.mk
+index 4774525..7ca9827 100644
+--- a/BoardConfigCommon.mk
++++ b/BoardConfigCommon.mk
+@@ -183,6 +183,7 @@ TARGET_HAS_NO_WIFI_STATS := true
+ BOARD_USES_QCOM_HARDWARE := true
+ 
+ # RIL
++TARGET_PROVIDES_QTI_TELEPHONY_JAR := true
+ TARGET_RIL_VARIANT := caf
+ 
+ # Recovery
+-- 
+2.7.4
+

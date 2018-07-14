@@ -1,0 +1,31 @@
+From 9c882818644b1a0330ba0fae59c051f4dbf0a3e0 Mon Sep 17 00:00:00 2001
+From: LuK1337 <priv.luk@gmail.com>
+Date: Sat, 7 Jul 2018 18:45:17 +0200
+Subject: [PATCH 19/25] msm8953-common: Remove
+ config_no_sim_display_network_modes overlay
+
+* This overlay does not exist since we are no longer
+  based on CAF.
+
+Change-Id: Ibbc522f9ab1597d7e039eb7458cf4bb3924b7176
+---
+ overlay/packages/services/Telephony/res/values/config.xml | 3 ---
+ 1 file changed, 3 deletions(-)
+
+diff --git a/overlay/packages/services/Telephony/res/values/config.xml b/overlay/packages/services/Telephony/res/values/config.xml
+index 883da92..75faa2d 100644
+--- a/overlay/packages/services/Telephony/res/values/config.xml
++++ b/overlay/packages/services/Telephony/res/values/config.xml
+@@ -33,9 +33,6 @@
+     <!-- DEPRECATED: Use CarrierConfigManager#KEY_CSP_ENABLED_BOOL -->
+     <bool name="csp_enabled">true</bool>
+ 
+-    <!-- Show Preferred Network Type options in No SIM case -->
+-    <bool name="config_no_sim_display_network_modes">true</bool>
+-
+     <!-- After a CDMA conference call is merged, the swap button should be displayed. -->
+     <bool name="support_swap_after_merge" translatable="false">false</bool>
+ </resources>
+-- 
+2.7.4
+

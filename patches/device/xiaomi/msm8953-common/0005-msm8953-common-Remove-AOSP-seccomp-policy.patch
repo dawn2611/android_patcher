@@ -1,0 +1,48 @@
+From 859cbf26acde4c68a2a2f3a10007131b8a542120 Mon Sep 17 00:00:00 2001
+From: LuK1337 <priv.luk@gmail.com>
+Date: Sun, 31 Dec 2017 15:25:59 +0100
+Subject: [PATCH 05/25] msm8953-common: Remove AOSP seccomp policy
+
+While it served the purpose so far, no longer works when using
+CAF media HAL. Remove it to allow clean picks from CAf.
+
+This reverts commit 749422bcb0ed6c3b5447743c057f6e20f63a3f5a.
+
+Change-Id: I50edd601c24b40b735dd167435ae4a1d77ea76ad
+---
+ msm8953.mk                       | 4 ----
+ seccomp_policy/mediacodec.policy | 7 -------
+ 2 files changed, 11 deletions(-)
+ delete mode 100644 seccomp_policy/mediacodec.policy
+
+diff --git a/msm8953.mk b/msm8953.mk
+index c1ee804..99d9ba5 100644
+--- a/msm8953.mk
++++ b/msm8953.mk
+@@ -315,10 +315,6 @@ PRODUCT_PACKAGES += \
+ PRODUCT_BOOT_JARS += \
+     telephony-ext
+ 
+-# Seccomp policy
+-PRODUCT_COPY_FILES += \
+-    $(LOCAL_PATH)/seccomp_policy/mediacodec.policy:$(TARGET_COPY_OUT_VENDOR)/etc/seccomp_policy/mediacodec.policy
+-
+ # Sensors
+ PRODUCT_PACKAGES += \
+     android.hardware.sensors@1.0-impl \
+diff --git a/seccomp_policy/mediacodec.policy b/seccomp_policy/mediacodec.policy
+deleted file mode 100644
+index 87d8ee1..0000000
+--- a/seccomp_policy/mediacodec.policy
++++ /dev/null
+@@ -1,7 +0,0 @@
+-# device specific syscalls
+-pselect6: 1
+-eventfd2: 1
+-sendto: 1
+-recvfrom: 1
+-sysinfo: 1
+-getcwd: 1
+-- 
+2.7.4
+

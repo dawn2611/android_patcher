@@ -1,0 +1,26 @@
+From d18855125b15651b92ef70b85da4645d4a4d9370 Mon Sep 17 00:00:00 2001
+From: Uma Mehta <umamehta@codeaurora.org>
+Date: Fri, 14 Oct 2016 14:26:58 +0530
+Subject: [PATCH 07/25] msm8953-common: Adding syscalls for VPP functionality
+
+Adding syscalls inotify_init1 and inotify_add_watch
+used by VPP functionality.
+
+Change-Id: I0183809e5e6503e6371e8938bdc5e1405e548fc6
+---
+ seccomp/mediacodec-seccomp.policy | 2 ++
+ 1 file changed, 2 insertions(+)
+
+diff --git a/seccomp/mediacodec-seccomp.policy b/seccomp/mediacodec-seccomp.policy
+index 28ab465..73f7379 100755
+--- a/seccomp/mediacodec-seccomp.policy
++++ b/seccomp/mediacodec-seccomp.policy
+@@ -7,3 +7,5 @@ recvfrom: 1
+ _llseek: 1
+ sysinfo: 1
+ getcwd: 1
++inotify_init1: 1
++inotify_add_watch: 1
+-- 
+2.7.4
+

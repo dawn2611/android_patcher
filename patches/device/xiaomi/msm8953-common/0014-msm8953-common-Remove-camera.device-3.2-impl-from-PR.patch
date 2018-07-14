@@ -1,0 +1,29 @@
+From 90b86feb9605d0adc50b15091fdb5441a6325629 Mon Sep 17 00:00:00 2001
+From: LuK1337 <priv.luk@gmail.com>
+Date: Fri, 29 Jun 2018 18:44:41 +0200
+Subject: [PATCH 14/25] msm8953-common: Remove camera.device@3.2-impl from
+ PRODUCT_PACKAGES
+
+* camera.device@3.2-impl is a dependency of camera provider
+  therefore there's no need to add it to PRODUCT_PACKAGES.
+
+Change-Id: I3ae211965a31b5f85af3dd0fa1c7811b802586c3
+---
+ msm8953.mk | 1 -
+ 1 file changed, 1 deletion(-)
+
+diff --git a/msm8953.mk b/msm8953.mk
+index 5464ca8..7898eb2 100644
+--- a/msm8953.mk
++++ b/msm8953.mk
+@@ -127,7 +127,6 @@ PRODUCT_PACKAGES += \
+ PRODUCT_PACKAGES += \
+     android.hardware.camera.provider@2.4-impl \
+     android.hardware.camera.provider@2.4-service \
+-    camera.device@3.2-impl \
+     camera.msm8953 \
+     libmm-qcamera \
+     Snap \
+-- 
+2.7.4
+

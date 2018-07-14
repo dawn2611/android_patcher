@@ -1,0 +1,35 @@
+From 17064fd22a790c7a4163f41fe99b7733b178cda6 Mon Sep 17 00:00:00 2001
+From: Niranjan Pendharkar <npendhar@codeaurora.org>
+Date: Thu, 31 May 2018 12:08:28 -0700
+Subject: [PATCH 20/25] msm8953-common: Use low level shutdown trigger to stop
+ per_proxy
+
+Low level shutdown is triggered after SystemServer is
+cleaned up. sys.shutdown.requested is private to SystemServer
+and is used to syncrhonize the shutdown process if SystemServer
+crashes before hardware reboot is complete.
+Native daemons must use low level shutdown indication from
+powermanager for their graceful shutdown, if they wish to stop
+before init terminates the process.
+
+Change-Id: Ia583f7dce6f1927d9b766fdc132f082b409f4d67
+---
+ rootdir/init.target.rc | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/rootdir/init.target.rc b/rootdir/init.target.rc
+index c821635..666dc18 100644
+--- a/rootdir/init.target.rc
++++ b/rootdir/init.target.rc
+@@ -86,7 +86,7 @@ service per_proxy /vendor/bin/pm-proxy
+ on property:init.svc.per_mgr=running
+     start per_proxy
+ 
+-on property:sys.shutdown.requested=*
++on property:sys.powerctl=*
+     stop per_proxy
+ 
+ service qseecomd /vendor/bin/qseecomd
+-- 
+2.7.4
+

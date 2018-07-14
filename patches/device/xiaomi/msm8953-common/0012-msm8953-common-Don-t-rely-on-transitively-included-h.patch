@@ -1,0 +1,47 @@
+From e4b4b90f481ab75807e278da6f7289868d4aa77e Mon Sep 17 00:00:00 2001
+From: Jiyong Park <jiyong@google.com>
+Date: Wed, 6 Sep 2017 12:10:07 +0900
+Subject: [PATCH 12/25] msm8953-common: Don't rely on transitively included
+ headers
+
+One must explicitly include what it need.
+time.h for struct tm.
+sys/time.h for gettimeofday, etc.
+
+Bug: 37629934
+Test: build
+
+Merged-In: Iacd5317d958f61df062fca40fbf2e8992c7fbb44
+Change-Id: I19e1043f23dbe85836b73714a4f1440159ebe419
+---
+ gps/utils/loc_log.cpp                                                    | 1 +
+ .../platform_lib_abstractions/loc_pla/src/platform_lib_log_util.cpp      | 1 +
+ 2 files changed, 2 insertions(+)
+
+diff --git a/gps/utils/loc_log.cpp b/gps/utils/loc_log.cpp
+index 9fad9e6..fd9a236 100644
+--- a/gps/utils/loc_log.cpp
++++ b/gps/utils/loc_log.cpp
+@@ -32,6 +32,7 @@
+ #include <stdio.h>
+ #include <stdlib.h>
+ #include <sys/time.h>
++#include <time.h>
+ #include "loc_log.h"
+ #include "msg_q.h"
+ #include <platform_lib_includes.h>
+diff --git a/gps/utils/platform_lib_abstractions/loc_pla/src/platform_lib_log_util.cpp b/gps/utils/platform_lib_abstractions/loc_pla/src/platform_lib_log_util.cpp
+index 1c5762b..90bf26d 100644
+--- a/gps/utils/platform_lib_abstractions/loc_pla/src/platform_lib_log_util.cpp
++++ b/gps/utils/platform_lib_abstractions/loc_pla/src/platform_lib_log_util.cpp
+@@ -26,6 +26,7 @@
+  * IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+  */
+ #include <cstdio>
++#include <sys/time.h>
+ 
+ #include "platform_lib_log_util.h"
+ #include "platform_lib_macros.h"
+-- 
+2.7.4
+

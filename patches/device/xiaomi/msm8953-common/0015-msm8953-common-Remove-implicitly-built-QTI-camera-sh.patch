@@ -1,0 +1,32 @@
+From 9fa69ff06f5fca572695b3b4930d85475a64f7d9 Mon Sep 17 00:00:00 2001
+From: Bruno Martins <bgcngm@gmail.com>
+Date: Sat, 7 Jul 2018 22:40:59 +0100
+Subject: [PATCH 15/25] msm8953-common: Remove implicitly built QTI camera
+ shared libraries
+
+ * These shared libs are built when TARGET_USES_QTI_CAMERA_DEVICE
+   flag is enabled.
+
+Change-Id: Ifb39b7c2c8de2cbb1f59c6dc492a3763d32f1b7a
+---
+ msm8953.mk | 4 +---
+ 1 file changed, 1 insertion(+), 3 deletions(-)
+
+diff --git a/msm8953.mk b/msm8953.mk
+index 7898eb2..b394c33 100644
+--- a/msm8953.mk
++++ b/msm8953.mk
+@@ -129,9 +129,7 @@ PRODUCT_PACKAGES += \
+     android.hardware.camera.provider@2.4-service \
+     camera.msm8953 \
+     libmm-qcamera \
+-    Snap \
+-    vendor.qti.hardware.camera.device@1.0 \
+-    vendor.qti.hardware.camera.device@1.0_vendor
++    Snap
+ 
+ # Configstore
+ PRODUCT_PACKAGES += \
+-- 
+2.7.4
+

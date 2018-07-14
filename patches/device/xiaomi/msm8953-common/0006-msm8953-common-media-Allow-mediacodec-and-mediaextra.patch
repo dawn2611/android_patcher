@@ -1,0 +1,63 @@
+From 28b8023a295a04587655813d154e08a4953d2e89 Mon Sep 17 00:00:00 2001
+From: Uma Mehta <umamehta@codeaurora.org>
+Date: Mon, 12 Sep 2016 18:07:06 +0530
+Subject: [PATCH 06/25] msm8953-common: media: Allow mediacodec and
+ mediaextractor syscalls
+
+Add select, eventfd, sendto, ecvfrom and
+other syscalls to make file operations
+successful.
+
+Change-Id: Ife5c6a860ce69d4ae253f557eeb269995c87a2d1
+---
+ msm8953.mk                            | 5 +++++
+ seccomp/mediacodec-seccomp.policy     | 9 +++++++++
+ seccomp/mediaextractor-seccomp.policy | 4 ++++
+ 3 files changed, 18 insertions(+)
+ create mode 100755 seccomp/mediacodec-seccomp.policy
+ create mode 100755 seccomp/mediaextractor-seccomp.policy
+
+diff --git a/msm8953.mk b/msm8953.mk
+index 99d9ba5..c929fc2 100644
+--- a/msm8953.mk
++++ b/msm8953.mk
+@@ -315,6 +315,11 @@ PRODUCT_PACKAGES += \
+ PRODUCT_BOOT_JARS += \
+     telephony-ext
+ 
++# Seccomp policy
++PRODUCT_COPY_FILES += \
++    $(LOCAL_PATH)/seccomp/mediacodec-seccomp.policy:$(TARGET_COPY_OUT_VENDOR)/etc/seccomp_policy/mediacodec.policy \
++    $(LOCAL_PATH)/seccomp/mediaextractor-seccomp.policy:$(TARGET_COPY_OUT_VENDOR)/etc/seccomp_policy/mediaextractor.policy
++
+ # Sensors
+ PRODUCT_PACKAGES += \
+     android.hardware.sensors@1.0-impl \
+diff --git a/seccomp/mediacodec-seccomp.policy b/seccomp/mediacodec-seccomp.policy
+new file mode 100755
+index 0000000..28ab465
+--- /dev/null
++++ b/seccomp/mediacodec-seccomp.policy
+@@ -0,0 +1,9 @@
++# device specific syscalls
++# extension of services/mediacodec/minijail/seccomp_policy/mediacodec-seccomp-arm.policy
++pselect6: 1
++eventfd2: 1
++sendto: 1
++recvfrom: 1
++_llseek: 1
++sysinfo: 1
++getcwd: 1
+diff --git a/seccomp/mediaextractor-seccomp.policy b/seccomp/mediaextractor-seccomp.policy
+new file mode 100755
+index 0000000..77c1e2a
+--- /dev/null
++++ b/seccomp/mediaextractor-seccomp.policy
+@@ -0,0 +1,4 @@
++# device specific syscalls.
++# extension of services/mediaextractor/minijail/seccomp_policy/mediaextractor-seccomp-arm.policy
++readlinkat: 1
++pread64: 1
+-- 
+2.7.4
+

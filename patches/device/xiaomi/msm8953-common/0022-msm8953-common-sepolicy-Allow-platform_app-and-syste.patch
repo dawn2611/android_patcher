@@ -1,0 +1,31 @@
+From ae08edbf0d8b71515c30a1766614d2e609fd97f4 Mon Sep 17 00:00:00 2001
+From: qjohn <townex22@gmail.com>
+Date: Sat, 14 Jul 2018 15:26:03 +0700
+Subject: [PATCH 22/25] msm8953-common: sepolicy: Allow platform_app and
+ system_app to access virtual key status
+
+Change-Id: I1f38d5cd800a41a34051121b9cf785eb415dbc05
+---
+ sepolicy/platform_app.te | 1 +
+ sepolicy/system_app.te   | 1 +
+ 2 files changed, 2 insertions(+)
+ create mode 100644 sepolicy/platform_app.te
+ create mode 100644 sepolicy/system_app.te
+
+diff --git a/sepolicy/platform_app.te b/sepolicy/platform_app.te
+new file mode 100644
+index 0000000..297b3ec
+--- /dev/null
++++ b/sepolicy/platform_app.te
+@@ -0,0 +1 @@
++get_prop(platform_app, qemu_hw_mainkeys_prop)
+diff --git a/sepolicy/system_app.te b/sepolicy/system_app.te
+new file mode 100644
+index 0000000..c9197dc
+--- /dev/null
++++ b/sepolicy/system_app.te
+@@ -0,0 +1 @@
++get_prop(system_app, qemu_hw_mainkeys_prop)
+-- 
+2.7.4
+

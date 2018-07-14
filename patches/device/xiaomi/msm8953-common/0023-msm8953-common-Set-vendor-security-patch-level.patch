@@ -1,0 +1,28 @@
+From cbac90c263ebb23ed4cbd98801c267e9b775fd6f Mon Sep 17 00:00:00 2001
+From: qjohn <townex22@gmail.com>
+Date: Wed, 4 Jul 2018 18:07:27 +0700
+Subject: [PATCH 23/25] msm8953-common: Set vendor security patch level
+
+Change-Id: I7a05232fc460dc5202f47b6b6ff49eefe1e665f6
+---
+ prop.mk | 4 ++++
+ 1 file changed, 4 insertions(+)
+
+diff --git a/prop.mk b/prop.mk
+index 63b16c5..d97cdee 100644
+--- a/prop.mk
++++ b/prop.mk
+@@ -169,6 +169,10 @@ ro.telephony.default_network=22,20 \
+ service.qti.ims.enabled=1 \
+ telephony.lteOnCdmaDevice=1
+ 
++# Security patch level
++PRODUCT_PROPERTY_OVERRIDES += \
++ro.vendor.build.security_patch=2018-05-01
++
+ # Time Services
+ PRODUCT_PROPERTY_OVERRIDES += \
+ persist.timed.enable=true
+-- 
+2.7.4
+

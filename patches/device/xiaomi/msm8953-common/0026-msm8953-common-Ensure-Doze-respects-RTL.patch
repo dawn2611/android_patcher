@@ -1,0 +1,35 @@
+From 0fdf91e540dc2e5d7b1aeee2d216ee156a4139d7 Mon Sep 17 00:00:00 2001
+From: Alex <alex@dirtyunicorns.com>
+Date: Wed, 4 Jul 2018 20:16:11 +0300
+Subject: [PATCH 26/26] msm8953-common: Ensure Doze respects RTL
+
+- Add missing INTERACT_ACROSS_USERS permission
+
+Change-Id: I532763c042bd7bd1f1c7b726f32e78ee9842340d
+---
+ doze/AndroidManifest.xml | 2 ++
+ 1 file changed, 2 insertions(+)
+
+diff --git a/doze/AndroidManifest.xml b/doze/AndroidManifest.xml
+index 93f5a3b..f2fc8f9 100644
+--- a/doze/AndroidManifest.xml
++++ b/doze/AndroidManifest.xml
+@@ -23,6 +23,7 @@
+ 
+     <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED"/>
+     <uses-permission android:name="android.permission.WAKE_LOCK" />
++    <uses-permission android:name="android.permission.INTERACT_ACROSS_USERS" />
+ 
+     <protected-broadcast android:name="com.android.systemui.doze.pulse" />
+ 
+@@ -32,6 +33,7 @@
+ 
+     <application
+         android:label="@string/device_settings_app_name"
++        android:supportsRtl="true"
+         android:persistent="true">
+ 
+         <receiver android:name=".BootCompletedReceiver">
+-- 
+2.7.4
+

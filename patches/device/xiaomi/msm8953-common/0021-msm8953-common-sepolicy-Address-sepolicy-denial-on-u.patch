@@ -1,0 +1,24 @@
+From b4b4cf07bea2644b8440527b6c1aaa07e0f7702a Mon Sep 17 00:00:00 2001
+From: YumeMichi <do4suki@gmail.com>
+Date: Sat, 17 Mar 2018 19:40:40 -0400
+Subject: [PATCH 21/25] msm8953-common: sepolicy: Address sepolicy denial on
+ user builds
+
+E SELinux : avc:  denied  { find } for interface=android.hardware.memtrack::IMemtrack pid=2002 scontext=u:r:untrusted_app_25:s0:c512,c768 tcontext=u:object_r:hal_memtrack_hwservice:s0 tclass=hwservice_manager permissive=0
+
+Change-Id: I17673fbd4f9d19a9352266ef915ce9ef184f6bc4
+---
+ sepolicy/untrusted_app_25.te | 1 +
+ 1 file changed, 1 insertion(+)
+ create mode 100644 sepolicy/untrusted_app_25.te
+
+diff --git a/sepolicy/untrusted_app_25.te b/sepolicy/untrusted_app_25.te
+new file mode 100644
+index 0000000..4b7888e
+--- /dev/null
++++ b/sepolicy/untrusted_app_25.te
+@@ -0,0 +1 @@
++dontaudit untrusted_app_25 hal_memtrack_hwservice:hwservice_manager find;
+-- 
+2.7.4
+

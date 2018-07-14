@@ -1,0 +1,31 @@
+From 536a56518ab58e3dfd9ad3a37de74ba49be93de4 Mon Sep 17 00:00:00 2001
+From: Lennart Wieboldt <lennart.1997@gmx.de>
+Date: Mon, 13 Nov 2017 08:50:15 +0100
+Subject: [PATCH 04/25] msm8953-common: Remove cpuset foreground boost
+
+Cpuset foreground boost is departed since
+https://android.googlesource.com/platform/frameworks/base/+/a712d4058f6f85268838
+
+Change-Id: Iab1834dbb8cce15480b5e11968bcfff7cc80177e
+Signed-off-by: Lennart Wieboldt <lennart.1997@gmx.de>
+---
+ rootdir/init.target.rc | 2 --
+ 1 file changed, 2 deletions(-)
+
+diff --git a/rootdir/init.target.rc b/rootdir/init.target.rc
+index aa21529..c821635 100644
+--- a/rootdir/init.target.rc
++++ b/rootdir/init.target.rc
+@@ -190,9 +190,7 @@ on charger
+ 
+ on boot
+ 	write /dev/cpuset/top-app/cpus 0-7
+-	write /dev/cpuset/top-app/boost/cpus 4-7
+ 	write /dev/cpuset/foreground/cpus 0-6
+-	write /dev/cpuset/foreground/boost/cpus 0-6
+ 	write /dev/cpuset/background/cpus 0-1
+ 	write /dev/cpuset/system-background/cpus 0-3
+ 
+-- 
+2.7.4
+

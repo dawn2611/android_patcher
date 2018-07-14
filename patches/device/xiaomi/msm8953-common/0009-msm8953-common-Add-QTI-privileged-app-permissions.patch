@@ -1,0 +1,92 @@
+From c19cd1ae5edf1d507f51cc338a1f8ad370e5c103 Mon Sep 17 00:00:00 2001
+From: Rashed Abdel-Tawab <rashed@linux.com>
+Date: Sun, 7 Jan 2018 14:01:18 -0800
+Subject: [PATCH 09/25] msm8953-common: Add QTI privileged app permissions
+
+Change-Id: Ide1b79d83624e8aba2ee17979efacc356dfacb55
+---
+ configs/privapp-permissions-qti.xml | 59 +++++++++++++++++++++++++++++++++++++
+ msm8953.mk                          |  1 +
+ 2 files changed, 60 insertions(+)
+ create mode 100644 configs/privapp-permissions-qti.xml
+
+diff --git a/configs/privapp-permissions-qti.xml b/configs/privapp-permissions-qti.xml
+new file mode 100644
+index 0000000..22e342f
+--- /dev/null
++++ b/configs/privapp-permissions-qti.xml
+@@ -0,0 +1,59 @@
++<?xml version="1.0" encoding="utf-8"?>
++<!--
++/* Copyright (c) 2017, The Linux Foundation. All rights reserved.
++ *
++ * Redistribution and use in source and binary forms, with or without
++ * modification, are permitted provided that the following conditions are
++ * met:
++ * * Redistributions of source code must retain the above copyright
++ * notice, this list of conditions and the following disclaimer.
++ * * Redistributions in binary form must reproduce the above
++ * copyright notice, this list of conditions and the following
++ * disclaimer in the documentation and/or other materials provided
++ * with the distribution.
++ * * Neither the name of The Linux Foundation nor the names of its
++ * contributors may be used to endorse or promote products derived
++ * from this software without specific prior written permission.
++ *
++ * THIS SOFTWARE IS PROVIDED "AS IS" AND ANY EXPRESS OR IMPLIED
++ * WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF
++ * MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NON-INFRINGEMENT
++ * ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS
++ * BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
++ * CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
++ * SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR
++ * BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY,
++ * WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE
++ * OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN
++ * IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
++ */
++-->
++
++<!--
++This XML file declares which signature|privileged permissions should be
++granted to privileged applications on Qualcomm devices.
++It allows additional grants on top of privapp-permissions-platform.xml
++-->
++
++<permissions>
++    <privapp-permissions package="com.quicinc.cne.CNEService">
++        <permission name="android.permission.INTERACT_ACROSS_USERS"/>
++        <permission name="android.permission.PACKET_KEEPALIVE_OFFLOAD"/>
++    </privapp-permissions>
++
++    <privapp-permissions package="com.qti.dpmserviceapp">
++        <permission name="android.permission.INTERACT_ACROSS_USERS"/>
++    </privapp-permissions>
++
++    <privapp-permissions package="com.qualcomm.location">
++        <permission name="android.permission.CONTROL_LOCATION_UPDATES"/>
++    </privapp-permissions>
++
++    <privapp-permissions package="com.qualcomm.location.XT">
++        <permission name="android.permission.WRITE_SECURE_SETTINGS"/>
++    </privapp-permissions>
++
++    <privapp-permissions package="com.qualcomm.qcrilmsgtunnel">
++        <permission name="android.permission.INTERACT_ACROSS_USERS"/>
++    </privapp-permissions>
++</permissions>
+diff --git a/msm8953.mk b/msm8953.mk
+index c929fc2..98eadba 100644
+--- a/msm8953.mk
++++ b/msm8953.mk
+@@ -359,6 +359,7 @@ PRODUCT_PACKAGES += \
+ 
+ # Whitelisted app
+ PRODUCT_COPY_FILES += \
++    $(LOCAL_PATH)/configs/privapp-permissions-qti.xml:system/etc/permissions/privapp-permissions-qti.xml \
+     $(LOCAL_PATH)/configs/qti_whitelist.xml:system/etc/sysconfig/qti_whitelist.xml
+ 
+ # VR
+-- 
+2.7.4
+

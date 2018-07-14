@@ -1,0 +1,22 @@
+From de8e8ef068ecc2aee3f9fbaae039c3cf4949663c Mon Sep 17 00:00:00 2001
+From: Bharat Pawar <bpawar@codeaurora.org>
+Date: Tue, 21 Nov 2017 19:18:22 +0530
+Subject: [PATCH 08/25] msm8953-common: Allow mediaextractor mremap syscall
+
+Change-Id: I6babb662c26939b94851a6525efcd2f2acf4f772
+---
+ seccomp/mediaextractor-seccomp.policy | 1 +
+ 1 file changed, 1 insertion(+)
+
+diff --git a/seccomp/mediaextractor-seccomp.policy b/seccomp/mediaextractor-seccomp.policy
+index 77c1e2a..0fcf604 100755
+--- a/seccomp/mediaextractor-seccomp.policy
++++ b/seccomp/mediaextractor-seccomp.policy
+@@ -2,3 +2,4 @@
+ # extension of services/mediaextractor/minijail/seccomp_policy/mediaextractor-seccomp-arm.policy
+ readlinkat: 1
+ pread64: 1
++mremap: 1
+-- 
+2.7.4
+

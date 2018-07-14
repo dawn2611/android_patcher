@@ -1,0 +1,25 @@
+From 70e994fbc40409e43b9f19a68b20a0fd7860cd78 Mon Sep 17 00:00:00 2001
+From: Bruno Martins <bgcngm@gmail.com>
+Date: Sat, 31 Mar 2018 14:38:06 +0100
+Subject: [PATCH 16/25] msm8953-common: Enable QTI camera extensions
+
+Change-Id: Ieb35a130a36d2edc3e6b91b29622b478ffd4848c
+---
+ BoardConfigCommon.mk | 1 +
+ 1 file changed, 1 insertion(+)
+
+diff --git a/BoardConfigCommon.mk b/BoardConfigCommon.mk
+index 3582f23..4774525 100644
+--- a/BoardConfigCommon.mk
++++ b/BoardConfigCommon.mk
+@@ -89,6 +89,7 @@ BLUETOOTH_HCI_USE_MCT := true
+ USE_DEVICE_SPECIFIC_CAMERA := true
+ BOARD_QTI_CAMERA_32BIT_ONLY := true
+ TARGET_TS_MAKEUP := true
++TARGET_USES_QTI_CAMERA_DEVICE := true
+ 
+ # Charger
+ BOARD_CHARGER_ENABLE_SUSPEND := true
+-- 
+2.7.4
+
