@@ -1,0 +1,32 @@
+From ce1488cb0a6513b6381f7abf78c625f8d71f3986 Mon Sep 17 00:00:00 2001
+From: Michael Bestas <mkbestas@lineageos.org>
+Date: Sun, 27 May 2018 01:19:37 +0300
+Subject: [PATCH 09/15] msm8953-common: Build libgnss with the VNDK.
+
+When the vndk is enabled (BOARD_VNDK_VERSION=current),
+vendor libraries must only link against vendor variants
+in the build system. This also means that they receive
+restricted sets of headers and that automatic global
+headers are restricted.
+
+Test: BOARD_VNDK_VERSION=current m -j k libgnss
+Change-Id: Ibf1003fc7022130e0a3e12f48e860f0ab4aa913f
+---
+ gps/gnss/XtraSystemStatusObserver.cpp | 1 +
+ 1 file changed, 1 insertion(+)
+
+diff --git a/gps/gnss/XtraSystemStatusObserver.cpp b/gps/gnss/XtraSystemStatusObserver.cpp
+index 2855c0d..984eef0 100644
+--- a/gps/gnss/XtraSystemStatusObserver.cpp
++++ b/gps/gnss/XtraSystemStatusObserver.cpp
+@@ -43,6 +43,7 @@
+ #include <SystemStatus.h>
+ #include <vector>
+ #include <sstream>
++#include <unistd.h>
+ #include <XtraSystemStatusObserver.h>
+ #include <LocAdapterBase.h>
+ #include <DataItemId.h>
+-- 
+2.7.4
+

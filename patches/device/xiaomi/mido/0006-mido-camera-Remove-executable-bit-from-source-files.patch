@@ -1,0 +1,22 @@
+From c513ae3958b037a110b6448044e81d767153b8bf Mon Sep 17 00:00:00 2001
+From: Michael Bestas <mkbestas@lineageos.org>
+Date: Tue, 14 Nov 2017 18:27:50 +0200
+Subject: [PATCH 06/13] mido: camera: Remove executable bit from source files
+
+Change-Id: I64f8a26a8dcbc5a73c32a274f389cf8e62f4d003
+---
+ camera/QCamera2/HAL/QCamera2HWICallbacks.cpp | 0
+ camera/QCamera2/HAL/QCameraMem.cpp           | 0
+ 2 files changed, 0 insertions(+), 0 deletions(-)
+ mode change 100755 => 100644 camera/QCamera2/HAL/QCamera2HWICallbacks.cpp
+ mode change 100755 => 100644 camera/QCamera2/HAL/QCameraMem.cpp
+
+diff --git a/camera/QCamera2/HAL/QCamera2HWICallbacks.cpp b/camera/QCamera2/HAL/QCamera2HWICallbacks.cpp
+old mode 100755
+new mode 100644
+diff --git a/camera/QCamera2/HAL/QCameraMem.cpp b/camera/QCamera2/HAL/QCameraMem.cpp
+old mode 100755
+new mode 100644
+-- 
+2.7.4
+

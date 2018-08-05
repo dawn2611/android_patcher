@@ -1,0 +1,29 @@
+From c04739bb0f14e3720ff54159913c0753c17b487c Mon Sep 17 00:00:00 2001
+From: LuK1337 <priv.luk@gmail.com>
+Date: Sun, 1 Jul 2018 14:41:43 +0200
+Subject: [PATCH 14/15] msm8953-common: Remove unnecessary languages_full.mk
+ include
+
+* It's already included in full_base_telephony.
+
+Change-Id: I7547ff447e81641e74fd911a12f5a9f0df9e5ccf
+---
+ msm8953.mk | 2 --
+ 1 file changed, 2 deletions(-)
+
+diff --git a/msm8953.mk b/msm8953.mk
+index fa42c49..c05c7d0 100644
+--- a/msm8953.mk
++++ b/msm8953.mk
+@@ -14,8 +14,6 @@
+ # limitations under the License.
+ #
+ 
+-$(call inherit-product, $(SRC_TARGET_DIR)/product/languages_full.mk)
+-
+ $(call inherit-product, vendor/xiaomi/msm8953-common/msm8953-common-vendor.mk)
+ 
+ # Overlays
+-- 
+2.7.4
+

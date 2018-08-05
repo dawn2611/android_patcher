@@ -1,0 +1,64 @@
+From d4c596c34cd659c76d68ba5fa8c2b1148936faaa Mon Sep 17 00:00:00 2001
+From: Michael Bestas <mkbestas@lineageos.org>
+Date: Tue, 14 Nov 2017 17:22:37 +0200
+Subject: [PATCH 05/13] mido: camera: Cleanup Obsolete LOCAL_PRELINK_MODULE.
+
+Change-Id: I2b48ea97aef4dcce31f1354c021d409f68d8dc65
+---
+ camera/QCamera2/stack/mm-camera-interface/Android.mk | 1 -
+ camera/QCamera2/stack/mm-jpeg-interface/Android.mk   | 1 -
+ camera/QCamera2/stack/mm-lib2d-interface/Android.mk  | 1 -
+ camera/mm-image-codec/qomx_core/Android.mk           | 1 -
+ 4 files changed, 4 deletions(-)
+
+diff --git a/camera/QCamera2/stack/mm-camera-interface/Android.mk b/camera/QCamera2/stack/mm-camera-interface/Android.mk
+index 5cbb024..4338db7 100644
+--- a/camera/QCamera2/stack/mm-camera-interface/Android.mk
++++ b/camera/QCamera2/stack/mm-camera-interface/Android.mk
+@@ -57,7 +57,6 @@ LOCAL_CFLAGS += -Wall -Wextra -Werror
+ LOCAL_SRC_FILES := $(MM_CAM_FILES)
+ 
+ LOCAL_MODULE           := libmmcamera_interface
+-LOCAL_PRELINK_MODULE   := false
+ LOCAL_SHARED_LIBRARIES := libdl libcutils liblog
+ LOCAL_MODULE_TAGS := optional
+ LOCAL_VENDOR_MODULE := true
+diff --git a/camera/QCamera2/stack/mm-jpeg-interface/Android.mk b/camera/QCamera2/stack/mm-jpeg-interface/Android.mk
+index 8dd448d..4207d93 100644
+--- a/camera/QCamera2/stack/mm-jpeg-interface/Android.mk
++++ b/camera/QCamera2/stack/mm-jpeg-interface/Android.mk
+@@ -69,7 +69,6 @@ LOCAL_SRC_FILES := \
+     src/mm_jpeg_mpo_composer.c
+ 
+ LOCAL_MODULE           := libmmjpeg_interface
+-LOCAL_PRELINK_MODULE   := false
+ LOCAL_SHARED_LIBRARIES := libdl libcutils liblog libqomx_core libmmcamera_interface
+ ifeq ($(strip $(LIB2D_ROTATION)),true)
+     LOCAL_SHARED_LIBRARIES += libmmlib2d_interface
+diff --git a/camera/QCamera2/stack/mm-lib2d-interface/Android.mk b/camera/QCamera2/stack/mm-lib2d-interface/Android.mk
+index e963b69..554082c 100644
+--- a/camera/QCamera2/stack/mm-lib2d-interface/Android.mk
++++ b/camera/QCamera2/stack/mm-lib2d-interface/Android.mk
+@@ -29,7 +29,6 @@ LOCAL_SRC_FILES := \
+     src/mm_lib2d.c
+ 
+ LOCAL_MODULE           := libmmlib2d_interface
+-LOCAL_PRELINK_MODULE   := false
+ LOCAL_SHARED_LIBRARIES := libdl libcutils liblog libmmcamera_interface
+ LOCAL_MODULE_TAGS := optional
+ LOCAL_VENDOR_MODULE := true
+diff --git a/camera/mm-image-codec/qomx_core/Android.mk b/camera/mm-image-codec/qomx_core/Android.mk
+index d7eeee4..b6ec46c 100644
+--- a/camera/mm-image-codec/qomx_core/Android.mk
++++ b/camera/mm-image-codec/qomx_core/Android.mk
+@@ -20,7 +20,6 @@ LOCAL_SRC_FILES := qomx_core.c
+ 
+ LOCAL_MODULE           := libqomx_core
+ LOCAL_VENDOR_MODULE := true
+-LOCAL_PRELINK_MODULE   := false
+ LOCAL_SHARED_LIBRARIES := libcutils libdl liblog
+ 
+ LOCAL_32_BIT_ONLY := true
+-- 
+2.7.4
+

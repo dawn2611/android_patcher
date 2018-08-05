@@ -1,0 +1,74 @@
+From 863cfd0e0dbbcae9d425ede1fefed4d71bd84285 Mon Sep 17 00:00:00 2001
+From: Vitaliy Tomin <highwaystar.ru@gmail.com>
+Date: Sat, 8 Jul 2017 23:42:51 +0800
+Subject: [PATCH 07/13] mido: camera: Fix CleanSpec camera HAL name
+
+ * Also update makefiles
+
+Change-Id: I9ce7744a23c059cef5221a506173f88099a30bb7
+---
+ camera/Android.mk   | 42 ++++++++++++++++--------------------------
+ camera/CleanSpec.mk |  2 +-
+ 2 files changed, 17 insertions(+), 27 deletions(-)
+
+diff --git a/camera/Android.mk b/camera/Android.mk
+index 7f1fe91..2c005b1 100644
+--- a/camera/Android.mk
++++ b/camera/Android.mk
+@@ -1,27 +1,17 @@
+-MM_V4L2_DRIVER_LIST += msm8960
+-MM_V4L2_DRIVER_LIST += msm8974
+-MM_V4L2_DRIVER_LIST += msm8916
+-MM_V4L2_DRIVER_LIST += msm8226
+-MM_V4L2_DRIVER_LIST += msm8610
+-MM_V4L2_DRIVER_LIST += apq8084
+-MM_V4L2_DRIVER_LIST += mpq8092
+-MM_V4L2_DRIVER_LIST += msm_bronze
+-MM_V4L2_DRIVER_LIST += msm8916
+-MM_V4L2_DRIVER_LIST += msm8994
+-MM_V4L2_DRIVER_LIST += msm8084
+-MM_V4L2_DRIVER_LIST += msm8909
+-MM_V4L2_DRIVER_LIST += msm8952
+-MM_V4L2_DRIVER_LIST += msm8996
+-MM_V4L2_DRIVER_LIST += msm8992
+-MM_V4L2_DRIVER_LIST += msm8937
+-MM_V4L2_DRIVER_LIST += msm8953
+-MM_V4L2_DRIVER_LIST += msmcobalt
+-MM_V4L2_DRIVER_LIST += msmfalcon
++#
++# Copyright (C) 2017-2018 The LineageOS Project
++#
++# Licensed under the Apache License, Version 2.0 (the "License");
++# you may not use this file except in compliance with the License.
++# You may obtain a copy of the License at
++#
++#      http://www.apache.org/licenses/LICENSE-2.0
++#
++# Unless required by applicable law or agreed to in writing, software
++# distributed under the License is distributed on an "AS IS" BASIS,
++# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
++# See the License for the specific language governing permissions and
++# limitations under the License.
++#
+ 
+-ifneq (,$(filter $(MM_V4L2_DRIVER_LIST),$(TARGET_BOARD_PLATFORM)))
+-  ifneq ($(strip $(USE_CAMERA_STUB)),true)
+-    ifneq ($(BUILD_TINY_ANDROID),true)
+-      include $(call all-subdir-makefiles)
+-    endif
+-  endif
+-endif
++include $(call first-makefiles-under,$(call my-dir))
+diff --git a/camera/CleanSpec.mk b/camera/CleanSpec.mk
+index bb86ad0..a931f52 100644
+--- a/camera/CleanSpec.mk
++++ b/camera/CleanSpec.mk
+@@ -44,4 +44,4 @@
+ #$(call add-clean-step, find $(OUT_DIR) -type f -name "IGTalkSession*" -print0 | xargs -0 rm -f)
+ #$(call add-clean-step, rm -rf $(PRODUCT_OUT)/data/*)
+ 
+-$(call add-clean-step, find $(OUT_DIR) -name "camera.msm8960*" -print0 | xargs -0 rm -rf)
++$(call add-clean-step, find $(OUT_DIR) -name "camera.msm8953*" -print0 | xargs -0 rm -rf)
+-- 
+2.7.4
+

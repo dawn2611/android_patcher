@@ -1,0 +1,94 @@
+From 36cd8c14fbd5bc15b6de2b26174da2f5049ae232 Mon Sep 17 00:00:00 2001
+From: Yifan Hong <elsk@google.com>
+Date: Tue, 27 Jun 2017 11:14:25 -0700
+Subject: [PATCH 11/13] mido: Fix dependencies for mm-camera-interface
+
+Test: mma -j BOARD_VNDK_VERSION=current
+Bug: 33241851
+Change-Id: I603e86e78c80e592e852da184ca021fe42a8ea9a
+---
+ camera/QCamera2/stack/mm-camera-interface/Android.mk                | 1 +
+ camera/QCamera2/stack/mm-camera-interface/src/mm_camera.c           | 2 ++
+ camera/QCamera2/stack/mm-camera-interface/src/mm_camera_interface.c | 1 +
+ camera/QCamera2/stack/mm-camera-interface/src/mm_camera_sock.c      | 1 +
+ camera/QCamera2/stack/mm-camera-interface/src/mm_camera_stream.c    | 2 ++
+ camera/QCamera2/stack/mm-camera-interface/src/mm_camera_thread.c    | 1 +
+ 6 files changed, 8 insertions(+)
+
+diff --git a/camera/QCamera2/stack/mm-camera-interface/Android.mk b/camera/QCamera2/stack/mm-camera-interface/Android.mk
+index ee85369..9e1b557 100644
+--- a/camera/QCamera2/stack/mm-camera-interface/Android.mk
++++ b/camera/QCamera2/stack/mm-camera-interface/Android.mk
+@@ -58,6 +58,7 @@ LOCAL_SRC_FILES := $(MM_CAM_FILES)
+ 
+ LOCAL_MODULE           := libmmcamera_interface
+ LOCAL_SHARED_LIBRARIES := libdl libcutils liblog libutils
++LOCAL_HEADER_LIBRARIES := libhardware_headers
+ LOCAL_MODULE_TAGS := optional
+ LOCAL_VENDOR_MODULE := true
+ 
+diff --git a/camera/QCamera2/stack/mm-camera-interface/src/mm_camera.c b/camera/QCamera2/stack/mm-camera-interface/src/mm_camera.c
+index 78ab597..9edd3d9 100644
+--- a/camera/QCamera2/stack/mm-camera-interface/src/mm_camera.c
++++ b/camera/QCamera2/stack/mm-camera-interface/src/mm_camera.c
+@@ -36,6 +36,8 @@
+ #include <fcntl.h>
+ #include <stdlib.h>
+ #include <dlfcn.h>
++#include <unistd.h>
++
+ #define IOCTL_H <SYSTEM_HEADER_PREFIX/ioctl.h>
+ #include IOCTL_H
+ 
+diff --git a/camera/QCamera2/stack/mm-camera-interface/src/mm_camera_interface.c b/camera/QCamera2/stack/mm-camera-interface/src/mm_camera_interface.c
+index 207481b..5ae3c30 100644
+--- a/camera/QCamera2/stack/mm-camera-interface/src/mm_camera_interface.c
++++ b/camera/QCamera2/stack/mm-camera-interface/src/mm_camera_interface.c
+@@ -38,6 +38,7 @@
+ #include <linux/media.h>
+ #include <media/msm_cam_sensor.h>
+ #include <dlfcn.h>
++#include <unistd.h>
+ 
+ #define IOCTL_H <SYSTEM_HEADER_PREFIX/ioctl.h>
+ #include IOCTL_H
+diff --git a/camera/QCamera2/stack/mm-camera-interface/src/mm_camera_sock.c b/camera/QCamera2/stack/mm-camera-interface/src/mm_camera_sock.c
+index 85a5d3b..3ff18bd 100644
+--- a/camera/QCamera2/stack/mm-camera-interface/src/mm_camera_sock.c
++++ b/camera/QCamera2/stack/mm-camera-interface/src/mm_camera_sock.c
+@@ -32,6 +32,7 @@
+ #include <stdlib.h>
+ #include <errno.h>
+ #include <string.h>
++#include <unistd.h>
+ 
+ // Camera dependencies
+ #include "mm_camera_dbg.h"
+diff --git a/camera/QCamera2/stack/mm-camera-interface/src/mm_camera_stream.c b/camera/QCamera2/stack/mm-camera-interface/src/mm_camera_stream.c
+index b2b00d0..662ca95 100644
+--- a/camera/QCamera2/stack/mm-camera-interface/src/mm_camera_stream.c
++++ b/camera/QCamera2/stack/mm-camera-interface/src/mm_camera_stream.c
+@@ -33,6 +33,8 @@
+ #include <errno.h>
+ #include <fcntl.h>
+ #include <media/msm_media_info.h>
++#include <unistd.h>
++
+ #define TIME_H <SYSTEM_HEADER_PREFIX/time.h>
+ #include TIME_H
+ #define IOCTL_H <SYSTEM_HEADER_PREFIX/ioctl.h>
+diff --git a/camera/QCamera2/stack/mm-camera-interface/src/mm_camera_thread.c b/camera/QCamera2/stack/mm-camera-interface/src/mm_camera_thread.c
+index 0c740b4..9395bad 100644
+--- a/camera/QCamera2/stack/mm-camera-interface/src/mm_camera_thread.c
++++ b/camera/QCamera2/stack/mm-camera-interface/src/mm_camera_thread.c
+@@ -34,6 +34,7 @@
+ #include <sys/types.h>
+ #include <sys/stat.h>
+ #include <sys/prctl.h>
++#include <unistd.h>
+ #include <fcntl.h>
+ #include <poll.h>
+ #include <cam_semaphore.h>
+-- 
+2.7.4
+

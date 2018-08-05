@@ -1,0 +1,54 @@
+From 5c41a1779f7ccef7664a967745798e6d4f563ac9 Mon Sep 17 00:00:00 2001
+From: Steven Moreland <smoreland@google.com>
+Date: Thu, 29 Jun 2017 17:13:51 -0700
+Subject: [PATCH 07/15] msm8953-common: Build libgps.utils with VNDK.
+
+Test: m -j BOARD_VNDK_VERSION=current libgps.utils
+Bug: 37342627
+Change-Id: Ifcd9344245cf689d4075d34b89faa689647b8b0b
+---
+ gps/utils/LocTimer.cpp                                                  | 1 +
+ gps/utils/loc_target.cpp                                                | 1 +
+ .../platform_lib_abstractions/loc_pla/src/platform_lib_log_util.cpp     | 2 ++
+ 3 files changed, 4 insertions(+)
+
+diff --git a/gps/utils/LocTimer.cpp b/gps/utils/LocTimer.cpp
+index 5b653eb..5bcdd7b 100644
+--- a/gps/utils/LocTimer.cpp
++++ b/gps/utils/LocTimer.cpp
+@@ -34,6 +34,7 @@
+ #include <loc_timer.h>
+ #include <sys/timerfd.h>
+ #include <sys/epoll.h>
++#include <unistd.h>
+ #include <LocTimer.h>
+ #include <LocHeap.h>
+ #include <LocThread.h>
+diff --git a/gps/utils/loc_target.cpp b/gps/utils/loc_target.cpp
+index cf42932..b7ba07b 100644
+--- a/gps/utils/loc_target.cpp
++++ b/gps/utils/loc_target.cpp
+@@ -32,6 +32,7 @@
+ #include <string.h>
+ #include <sys/types.h>
+ #include <sys/stat.h>
++#include <unistd.h>
+ #include <fcntl.h>
+ #include <errno.h>
+ #include <cutils/properties.h>
+diff --git a/gps/utils/platform_lib_abstractions/loc_pla/src/platform_lib_log_util.cpp b/gps/utils/platform_lib_abstractions/loc_pla/src/platform_lib_log_util.cpp
+index 3cb51a3..1c5762b 100644
+--- a/gps/utils/platform_lib_abstractions/loc_pla/src/platform_lib_log_util.cpp
++++ b/gps/utils/platform_lib_abstractions/loc_pla/src/platform_lib_log_util.cpp
+@@ -25,6 +25,8 @@
+  * OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN
+  * IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+  */
++#include <cstdio>
++
+ #include "platform_lib_log_util.h"
+ #include "platform_lib_macros.h"
+ 
+-- 
+2.7.4
+

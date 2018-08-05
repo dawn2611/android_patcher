@@ -1,0 +1,57 @@
+From f9623213ed978e64f1a7cdf91cce78af795c2d12 Mon Sep 17 00:00:00 2001
+From: Vijay Venkatraman <vijaykv@google.com>
+Date: Fri, 2 Jun 2017 16:02:20 -0700
+Subject: [PATCH 10/13] mido: Add libutils to libqomx_core and camera modules
+
+Bug: 33241851
+Test: build target and pass CTS
+Test: With BOARD_VNDK_VERSION, mma works
+Change-Id: Ibb107bde19cd26675c41059a8c21d5f1f8ffa6bb
+---
+ camera/QCamera2/stack/mm-camera-interface/Android.mk | 2 +-
+ camera/QCamera2/stack/mm-jpeg-interface/Android.mk   | 2 +-
+ camera/mm-image-codec/qomx_core/Android.mk           | 2 +-
+ 3 files changed, 3 insertions(+), 3 deletions(-)
+
+diff --git a/camera/QCamera2/stack/mm-camera-interface/Android.mk b/camera/QCamera2/stack/mm-camera-interface/Android.mk
+index 4338db7..ee85369 100644
+--- a/camera/QCamera2/stack/mm-camera-interface/Android.mk
++++ b/camera/QCamera2/stack/mm-camera-interface/Android.mk
+@@ -57,7 +57,7 @@ LOCAL_CFLAGS += -Wall -Wextra -Werror
+ LOCAL_SRC_FILES := $(MM_CAM_FILES)
+ 
+ LOCAL_MODULE           := libmmcamera_interface
+-LOCAL_SHARED_LIBRARIES := libdl libcutils liblog
++LOCAL_SHARED_LIBRARIES := libdl libcutils liblog libutils
+ LOCAL_MODULE_TAGS := optional
+ LOCAL_VENDOR_MODULE := true
+ 
+diff --git a/camera/QCamera2/stack/mm-jpeg-interface/Android.mk b/camera/QCamera2/stack/mm-jpeg-interface/Android.mk
+index 4207d93..fbf6a7e 100644
+--- a/camera/QCamera2/stack/mm-jpeg-interface/Android.mk
++++ b/camera/QCamera2/stack/mm-jpeg-interface/Android.mk
+@@ -69,7 +69,7 @@ LOCAL_SRC_FILES := \
+     src/mm_jpeg_mpo_composer.c
+ 
+ LOCAL_MODULE           := libmmjpeg_interface
+-LOCAL_SHARED_LIBRARIES := libdl libcutils liblog libqomx_core libmmcamera_interface
++LOCAL_SHARED_LIBRARIES := libdl libcutils liblog libqomx_core libmmcamera_interface libutils
+ ifeq ($(strip $(LIB2D_ROTATION)),true)
+     LOCAL_SHARED_LIBRARIES += libmmlib2d_interface
+ endif
+diff --git a/camera/mm-image-codec/qomx_core/Android.mk b/camera/mm-image-codec/qomx_core/Android.mk
+index b6ec46c..4323af4 100644
+--- a/camera/mm-image-codec/qomx_core/Android.mk
++++ b/camera/mm-image-codec/qomx_core/Android.mk
+@@ -20,7 +20,7 @@ LOCAL_SRC_FILES := qomx_core.c
+ 
+ LOCAL_MODULE           := libqomx_core
+ LOCAL_VENDOR_MODULE := true
+-LOCAL_SHARED_LIBRARIES := libcutils libdl liblog
++LOCAL_SHARED_LIBRARIES := libcutils libdl liblog libutils
+ 
+ LOCAL_32_BIT_ONLY := true
+ include $(BUILD_SHARED_LIBRARY)
+-- 
+2.7.4
+

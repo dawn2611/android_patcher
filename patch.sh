@@ -2,9 +2,9 @@
 
 ROOT="${PWD}"
 REPOSITORIES=(
-    'frameworks/base'
+    'device/xiaomi/mido'
+    'device/xiaomi/msm8953-common'
     'packages/apps/Dialer'
-    'packages/apps/Settings'
 )
 
 for repository in "${REPOSITORIES[@]}"; do
